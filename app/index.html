@@ -19,7 +19,24 @@
 
     <script src="assets/vendor.js"></script>
     <script src="assets/my-test.js"></script>
+    <script src="https://cdnjs.com/libraries/chart.js"></script>
+
+    <script data-template-name="application" type="text/x-handlebars">
+      {{outlet}}
+      {{outlet 'chart'}}
+    </script>
+
+    <script data-template-name="index" type="text/x-handlebars">
+      <div id="chart">
+        <form {{action "getChart" on="submit"}}>
+          {{input  type='text' value=model.symbol}}
+          {{input type="Submit" value="Submit" }}
+        </form>
+          {{ember-chart type='Line' data=model width=800 height=800}}
+      </div>
+    </script>
 
     {{content-for 'body-footer'}}
+
   </body>
 </html>
